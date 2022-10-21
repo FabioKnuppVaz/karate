@@ -8,14 +8,13 @@ Feature: verificar a funcionalidade de contas
 
   @INCLUIR_CONTA
   Scenario: deve incluir uma conta
-    * call read('classpath:examples/reset/reset.feature@RESET')
     Given path 'contas'
     When method post
     Then status 201
 
     * string id = response.id
     * match id == '#regex \\d{7}'
-    * assert response.nome == 'Conta para teste'
+    * match response.nome == '#regex Conta \\d{13}'
     * assert response.visivel == true
     * assert response.usuario_id == 1422
 
@@ -28,6 +27,6 @@ Feature: verificar a funcionalidade de contas
 
     * string id = response.id
     * match id == '#regex \\d{7}'
-    * assert response.nome == 'Conta para teste'
+    * match response.nome == '#regex Conta \\d{13}'
     * assert response.visivel == true
     * assert response.usuario_id == 1422
