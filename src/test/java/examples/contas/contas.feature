@@ -7,8 +7,8 @@ Feature: verificar a funcionalidade de contas
 
   @INCLUIR_CONTA
   Scenario: deve incluir uma conta
-    * request contaTeste
     Given path 'contas'
+    And request contaTeste
     When method post
     Then status 201
 
@@ -21,8 +21,8 @@ Feature: verificar a funcionalidade de contas
   @ALTERAR_CONTA
   Scenario: deve alterar uma conta
     * def response = karate.call('@INCLUIR_CONTA')
-    * request contaAlterada
     Given path 'contas', response.id
+    And request contaAlterada
     When method put
     Then status 200
 
